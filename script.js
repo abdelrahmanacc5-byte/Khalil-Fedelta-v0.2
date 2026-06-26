@@ -57,6 +57,83 @@ update();
 
 window.addEventListener("load",startCounter);
 
+const products = [
+{
+id:1,
+name:"Detergente Ultra",
+price:19.99,
+stock:50,
+rating:5,
+badge:"BEST SELLER",
+category:"Detergenti",
+image:"https://images.unsplash.com/photo-1585421514738-01798e348b17?w=600"
+},
+{
+id:2,
+name:"Sapone Professionale",
+price:14.99,
+stock:30,
+rating:4,
+badge:"NEW",
+category:"Detergenti",
+image:"https://images.unsplash.com/photo-1563453392212-326f5e854473?w=600"
+},
+{
+id:3,
+name:"Mop Premium",
+price:24.99,
+stock:18,
+rating:5,
+badge:"-20%",
+category:"Accessori",
+image:"https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?w=600"
+},
+{
+id:4,
+name:"Secchio Cleaning",
+price:12.99,
+stock:40,
+rating:4,
+badge:"",
+category:"Accessori",
+image:"https://images.unsplash.com/photo-1517841905240-472988babdf9?w=600"
+}
+];
+
+const productsContainer=document.getElementById("productsContainer");
+
+function renderProducts(){
+
+productsContainer.innerHTML="";
+
+products.forEach(product=>{
+
+productsContainer.innerHTML+=`
+
+<div class="product-card">
+
+<div class="badge">${product.badge}</div>
+
+<img src="${product.image}" alt="${product.name}">
+
+<h3>${product.name}</h3>
+
+<p class="price">€ ${product.price}</p>
+
+<p>Disponibili: ${product.stock}</p>
+
+<button>Aggiungi al Carrello</button>
+
+</div>
+
+`;
+
+});
+
+}
+
+renderProducts();
+
 
 /* ================= PRODUCTS ================= */
 
