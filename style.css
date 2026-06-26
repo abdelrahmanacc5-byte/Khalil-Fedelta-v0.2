@@ -1,1 +1,57 @@
+/* =========================
+   LOADING SCREEN
+========================= */
 
+#loader{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#0b0f14;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+z-index:99999;
+transition:1s;
+}
+
+.loader-logo{
+font-size:48px;
+font-weight:800;
+color:white;
+letter-spacing:2px;
+}
+
+.loader-logo span{
+color:#22c55e;
+}
+
+.loader-bar{
+width:280px;
+height:8px;
+background:#1f2937;
+margin-top:35px;
+border-radius:20px;
+overflow:hidden;
+}
+
+.loader-fill{
+width:0%;
+height:100%;
+background:#22c55e;
+animation:loading 2s linear forwards;
+}
+
+@keyframes loading{
+
+0%{
+width:0%;
+}
+
+100%{
+width:100%;
+}
+
+}
