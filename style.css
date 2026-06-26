@@ -474,3 +474,92 @@ margin-bottom:10px;
 color:#aaa;
 
 }
+/*=========== MEGA MENU ===========*/
+
+.mega-parent{
+position:relative;
+}
+
+.mega-menu{
+
+position:absolute;
+
+top:60px;
+
+left:50%;
+
+transform:translateX(-50%);
+
+width:700px;
+
+background:#161b22;
+
+padding:30px;
+
+border-radius:18px;
+
+display:none;
+
+grid-template-columns:repeat(3,1fr);
+
+gap:30px;
+
+box-shadow:0 20px 50px rgba(0,0,0,.5);
+
+}
+
+.mega-parent:hover .mega-menu{
+
+display:grid;
+
+animation:fade .3s ease;
+
+}
+
+.mega-column h3{
+
+color:#22c55e;
+
+margin-bottom:15px;
+
+}
+
+.mega-column a{
+
+display:block;
+
+margin:10px 0;
+
+color:#ddd;
+
+transition:.3s;
+
+}
+
+.mega-column a:hover{
+
+color:#22c55e;
+
+padding-left:10px;
+
+}
+
+@keyframes fade{
+
+from{
+
+opacity:0;
+
+transform:translateX(-50%) translateY(10px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateX(-50%) translateY(0);
+
+}
+
+}
