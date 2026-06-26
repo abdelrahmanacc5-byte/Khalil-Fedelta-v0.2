@@ -138,7 +138,49 @@ renderProducts();
 /* ================= PRODUCTS ================= */
 
 const products = [
+const productsContainer = document.getElementById("productsContainer");
 
+function renderProducts() {
+
+    productsContainer.innerHTML = "";
+
+    products.forEach(product => {
+
+        const stars = "⭐".repeat(product.rating);
+
+        productsContainer.innerHTML += `
+
+        <div class="product-card">
+
+            ${product.badge ? `<span class="badge">${product.badge}</span>` : ""}
+
+            <img src="${product.image}" alt="${product.name}">
+
+            <h3>${product.name}</h3>
+
+            <p class="category">${product.category}</p>
+
+            <div class="stars">${stars}</div>
+
+            <h2>€ ${product.price}</h2>
+
+            <p class="stock">Disponibili: ${product.stock}</p>
+
+            <button class="buy-btn">
+                <i class="fa-solid fa-cart-shopping"></i>
+                Aggiungi al Carrello
+            </button>
+
+        </div>
+
+        `;
+
+    });
+
+}
+
+renderProducts();
+   
 {
 id:1,
 name:"Detergente Ultra",
