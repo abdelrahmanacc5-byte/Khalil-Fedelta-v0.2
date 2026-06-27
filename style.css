@@ -1083,3 +1083,52 @@ font-size:12px;
 font-weight:bold;
 z-index:5;
 }
+/*================ SEARCH =================*/
+
+.search-box{
+
+width:420px;
+
+max-width:90%;
+
+margin:40px auto;
+
+position:relative;
+
+}
+
+.search-box input{
+
+width:100%;
+
+padding:18px 55px 18px 22px;
+
+border:none;
+
+border-radius:50px;
+
+font-size:17px;
+
+background:#1b2430;
+
+color:white;
+
+outline:none;
+
+}
+
+.search-box i{
+
+position:absolute;
+
+right:22px;
+
+top:50%;
+
+transform:translateY(-50%);
+
+color:#22c55e;
+
+font-size:22px;
+
+}
