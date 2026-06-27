@@ -1171,3 +1171,70 @@ box-shadow:0 5px 15px rgba(0,0,0,.2);
 transform:scale(1.15);
 
 }
+/*================ WHATSAPP =================*/
+
+.whatsapp-btn{
+
+position:fixed;
+
+bottom:25px;
+
+right:25px;
+
+width:70px;
+
+height:70px;
+
+border-radius:50%;
+
+background:#25D366;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+font-size:38px;
+
+color:white;
+
+text-decoration:none;
+
+box-shadow:0 10px 30px rgba(0,0,0,.3);
+
+z-index:9999;
+
+transition:.35s;
+
+animation:whatsappPulse 2s infinite;
+
+}
+
+.whatsapp-btn:hover{
+
+transform:scale(1.12);
+
+}
+
+@keyframes whatsappPulse{
+
+0%{
+
+box-shadow:0 0 0 0 rgba(37,211,102,.7);
+
+}
+
+70%{
+
+box-shadow:0 0 0 18px rgba(37,211,102,0);
+
+}
+
+100%{
+
+box-shadow:0 0 0 0 rgba(37,211,102,0);
+
+}
+
+}
