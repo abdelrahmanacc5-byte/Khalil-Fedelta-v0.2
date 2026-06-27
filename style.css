@@ -1132,3 +1132,42 @@ color:#22c55e;
 font-size:22px;
 
 }
+/*================ WISHLIST =================*/
+
+.favorite{
+
+position:absolute;
+
+top:15px;
+
+right:15px;
+
+width:42px;
+
+height:42px;
+
+border-radius:50%;
+
+background:white;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+font-size:22px;
+
+cursor:pointer;
+
+transition:.3s;
+
+box-shadow:0 5px 15px rgba(0,0,0,.2);
+
+}
+
+.favorite:hover{
+
+transform:scale(1.15);
+
+}
