@@ -1,85 +1,91 @@
-let products = [];
+import {
+  db,
+  collection,
+  addDoc,
+  getDocs,
+  deleteDoc,
+  doc
+} from "./firebase.js";
 
-function addProduct(){
+const productsCollection = collection(db, "products");
 
-const name = document.getElementById("name").value;
-const price = document.getElementById("price").value;
-const stock = document.getElementById("stock").value;
-const category = document.getElementById("category").value;
-const image = document.getElementById("image").value;
+// إضافة منتج
+window.addProduct = async function () {
 
-if(name=="" || price=="" || stock=="" || category==""){
+  const name = document.getElementById("name").value;
+  const price = document.getElementById("price").value;
+  const stock = document.getElementById("stock").value;
+  const category = document.getElementById("category").value;
+  const image = document.getElementById("image").value;
 
-alert("Compila tutti i campi");
+  if (!name || !price || !stock || !category) {
+    alert("Compila tutti i campi");
+    return;
+  }
 
-return;
+  await addDoc(productsCollection, {
+    name,
+    price: Number(price),
+    stock: Number(stock),
+    category,
+    image
+  });
 
-}
+  document.getElementById("name").value = "";
+  document.getElementById("price").value = "";
+  document.getElementById("stock").value = "";
+  document.getElementById("category").value = "";
+  document.getElementById("image").value = "";
 
-products.push({
+  loadProducts();
 
-name,
-price,
-stock,
-category,
-image
+};
 
-});
+// تحميل المنتجات
+async function loadProducts() {
 
-updateTable();
+  const tbody = document.querySelector("#productsTable tbody");
 
-document.getElementById("name").value="";
-document.getElementById("price").value="";
-document.getElementById("stock").value="";
-document.getElementById("category").value="";
-document.getElementById("image").value="";
+  tbody.innerHTML = "";
 
-}
+  const snapshot = await getDocs(productsCollection);
 
-function updateTable(){
+  let count = 0;
 
-const tbody=document.querySelector("#productsTable tbody");
+  snapshot.forEach((item) => {
 
-tbody.innerHTML="";
+    count++;
 
-products.forEach((product,index)=>{
+    const product = item.data();
 
-tbody.innerHTML+=`
+    tbody.innerHTML += `
+      <tr>
+        <td>${product.name}</td>
+        <td>€${product.price}</td>
+        <td>${product.stock}</td>
+        <td>${product.category}</td>
+        <td>
+          <button class="delete-btn" onclick="deleteProduct('${item.id}')">
+            Elimina
+          </button>
+        </td>
+      </tr>
+    `;
 
-<tr>
+  });
 
-<td>${product.name}</td>
-
-<td>€${product.price}</td>
-
-<td>${product.stock}</td>
-
-<td>${product.category}</td>
-
-<td>
-
-<button class="delete-btn" onclick="deleteProduct(${index})">
-
-Elimina
-
-</button>
-
-</td>
-
-</tr>
-
-`;
-
-});
-
-document.getElementById("productCount").innerText=products.length;
-
-}
-
-function deleteProduct(index){
-
-products.splice(index,1);
-
-updateTable();
+  document.getElementById("productCount").innerText = count;
 
 }
+
+// حذف
+window.deleteProduct = async function (id) {
+
+  await deleteDoc(doc(db, "products", id));
+
+  loadProducts();
+
+};
+
+// أول ما الصفحة تفتح
+loadProducts();
