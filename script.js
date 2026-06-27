@@ -230,11 +230,18 @@ function updateCart(){
 
 function removeItem(index){
 
+    const product = cart[index];
+
+    product.stock++;
+
     cart.splice(index,1);
+
+    renderProducts();
 
     updateCart();
 
 }
+
 function addToCart(id){
 
     const product = products.find(p => p.id === id);
