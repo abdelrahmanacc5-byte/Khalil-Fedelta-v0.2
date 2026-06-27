@@ -312,3 +312,51 @@ function toggleWishlist(id){
     );
 
 }
+/*================ BOOKING =================*/
+
+function openBooking(service){
+
+document.getElementById("bookingModal").style.display="flex";
+
+document.getElementById("serviceType").value=service;
+
+}
+
+function closeBooking(){
+
+document.getElementById("bookingModal").style.display="none";
+
+}
+
+function sendBookingWhatsApp(){
+
+const name=document.getElementById("customerName").value;
+
+const phone=document.getElementById("customerPhone").value;
+
+const address=document.getElementById("customerAddress").value;
+
+const date=document.getElementById("customerDate").value;
+
+const time=document.getElementById("customerTime").value;
+
+const note=document.getElementById("customerNote").value;
+
+const service=document.getElementById("serviceType").value;
+
+const message=`Nuova Prenotazione
+
+Nome: ${name}
+Telefono: ${phone}
+Servizio: ${service}
+Data: ${date}
+Ora: ${time}
+Indirizzo: ${address}
+Note: ${note}`;
+
+window.open(
+`https://wa.me/39رقم_واتساب_المحل?text=${encodeURIComponent(message)}`,
+"_blank"
+);
+
+}
