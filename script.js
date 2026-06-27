@@ -508,3 +508,26 @@ window.open(
 }
 
 }
+/* =========================
+   PRODUCT DETAILS
+========================= */
+
+function showDetails(id){
+
+const product=products.find(p=>p.id===id);
+
+if(!product) return;
+
+alert(
+
+`${product.name}
+
+Categoria: ${product.category}
+
+Prezzo: €${product.price}
+
+Disponibili: ${product.stock}`
+
+);
+
+}
