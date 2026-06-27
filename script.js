@@ -72,14 +72,14 @@ window.addEventListener("load", startCounter);
 const products = [
 
 {
-    id:11,
-    name:"sutter",
+    id:5,
+    name:"Candeggina",
     category:"Detergenti",
-    price:12.50,
-    stock:40,
+    price:12.99,
+    stock:20,
     rating:5,
-    badge:"NOVITÀ",
-    image:"https://your-image-link.jpg"
+    badge:"NEW",
+    image:"images/candeggina.jpg"
 },
    
 ];
