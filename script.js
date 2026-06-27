@@ -81,7 +81,29 @@ const products = [
     badge:"NEW",
     image:"images/candeggina.jpg"
 },
-   
+
+{
+    id:6,
+    name:"Chanteclair Sgrassatore",
+    category:"Detergenti",
+    price:4.99,
+    stock:35,
+    rating:5,
+    badge:"HOT",
+    image:"images/chanteclair.jpg"
+},
+
+{
+    id:7,
+    name:"Dash Pods",
+    category:"Lavatrice",
+    price:9.99,
+    stock:18,
+    rating:5,
+    badge:"SALE",
+    image:"images/dashpods.jpg"
+}
+
 ];
 
 
@@ -360,3 +382,5 @@ window.open(
 );
 
 }
+renderProducts();
+updateCart();
