@@ -241,7 +241,19 @@ function addToCart(id){
 
     if(!product) return;
 
+    if(product.stock <= 0){
+
+        alert("Prodotto esaurito!");
+
+        return;
+
+    }
+
+    product.stock--;
+
     cart.push(product);
+
+    renderProducts();
 
     updateCart();
 
