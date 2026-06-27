@@ -115,6 +115,50 @@ productsContainer.innerHTML+=`
 
 <div class="product-card">
 
+${product.badge ? `<span class="badge">${product.badge}</span>` : ""}
+
+<div class="product-image">
+
+<img src="${product.image}" alt="${product.name}">
+
+<div class="product-actions">
+
+<button class="action-btn">
+<i class="fa-regular fa-heart"></i>
+</button>
+
+<button class="action-btn">
+<i class="fa-solid fa-eye"></i>
+</button>
+
+</div>
+
+</div>
+
+<h3>${product.name}</h3>
+
+<p>${product.category}</p>
+
+<div class="stars">
+${"⭐".repeat(product.rating)}
+</div>
+
+<h2>€ ${product.price}</h2>
+
+<p class="stock">
+Disponibili: ${product.stock}
+</p>
+
+<button class="buy-btn" onclick="addToCart(${product.id})">
+
+<i class="fa-solid fa-cart-shopping"></i>
+
+Aggiungi al Carrello
+
+</button>
+
+</div>
+
 ${product.badge ? `<div class="badge">${product.badge}</div>` : ""}
 
 <img src="${product.image}" alt="${product.name}">
