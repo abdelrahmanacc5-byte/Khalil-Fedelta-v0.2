@@ -159,7 +159,7 @@ Aggiungi al Carrello
 
 </div>
 
-${product.badge ? `<div class="badge">${product.badge}</div>` : ""}
+
 
 <img src="${product.image}" alt="${product.name}">
 
