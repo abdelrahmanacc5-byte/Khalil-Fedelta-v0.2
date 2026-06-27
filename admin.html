@@ -1,1 +1,146 @@
+<!DOCTYPE html>
+<html lang="it">
 
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Dashboard | Khalil Fedeltà</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<link rel="stylesheet" href="admin.css">
+
+</head>
+
+<body>
+<div class="sidebar">
+
+<h2>Khalil Admin</h2>
+
+<ul>
+
+<li><i class="fa-solid fa-chart-line"></i> Dashboard</li>
+
+<li><i class="fa-solid fa-box"></i> Products</li>
+
+<li><i class="fa-solid fa-calendar-check"></i> Bookings</li>
+
+<li><i class="fa-solid fa-cart-shopping"></i> Orders</li>
+
+<li><i class="fa-solid fa-users"></i> Customers</li>
+
+<li><i class="fa-solid fa-gear"></i> Settings</li>
+
+</ul>
+
+</div>
+
+<div class="main">
+
+<div class="topbar">
+
+<h1>Dashboard</h1>
+
+</div>
+
+<div class="cards">
+
+<div class="card">
+
+<h3>Products</h3>
+
+<h2 id="productCount">0</h2>
+
+</div>
+
+<div class="card">
+
+<h3>Orders</h3>
+
+<h2>0</h2>
+
+</div>
+
+<div class="card">
+
+<h3>Bookings</h3>
+
+<h2>0</h2>
+
+</div>
+
+<div class="card">
+
+<h3>Customers</h3>
+
+<h2>0</h2>
+
+</div>
+
+</div>
+
+</div>
+<div class="product-form">
+
+<h2>Aggiungi Prodotto</h2>
+
+<input type="text" id="name" placeholder="Nome Prodotto">
+
+<input type="number" id="price" placeholder="Prezzo (€)">
+
+<input type="number" id="stock" placeholder="Quantità">
+
+<input type="text" id="category" placeholder="Categoria">
+
+<input type="text" id="image" placeholder="Link immagine">
+
+<button onclick="addProduct()">
+
+<i class="fa-solid fa-plus"></i>
+
+Aggiungi Prodotto
+
+</button>
+
+</div>
+
+<h2 style="margin-top:40px;">Lista Prodotti</h2>
+
+<table id="productsTable">
+
+<thead>
+
+<tr>
+
+<th>Nome</th>
+
+<th>Prezzo</th>
+
+<th>Stock</th>
+
+<th>Categoria</th>
+
+<th>Elimina</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+</tbody>
+
+</table>
+<script src="admin.js"></script>
+</body>
+
+</html>
