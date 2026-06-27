@@ -324,3 +324,24 @@ toast.classList.remove("show");
 },2500);
 
 }
+/*================ WISHLIST =================*/
+
+let wishlist = [];
+
+function toggleWishlist(id){
+
+    if(wishlist.includes(id)){
+
+        wishlist = wishlist.filter(item => item !== id);
+
+    }else{
+
+        wishlist.push(id);
+
+    }
+
+    renderProducts(
+        document.getElementById("searchInput")?.value || ""
+    );
+
+}
