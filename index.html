@@ -397,6 +397,39 @@ target="_blank">
 <i class="fa-brands fa-whatsapp"></i>
 
 </a>
+ <!-- BOOKING POPUP -->
+
+<div id="bookingModal" class="booking-modal">
+
+<div class="booking-box">
+
+<span class="close-booking" onclick="closeBooking()">&times;</span>
+
+<h2>Prenota un Servizio</h2>
+
+<input type="text" id="customerName" placeholder="Nome">
+
+<input type="tel" id="customerPhone" placeholder="Telefono">
+
+<input type="text" id="customerAddress" placeholder="Indirizzo">
+
+<input type="date" id="customerDate">
+
+<input type="time" id="customerTime">
+
+<input type="hidden" id="serviceType">
+
+<textarea id="customerNote" placeholder="Note"></textarea>
+
+<button onclick="sendBookingWhatsApp()">
+
+Invia su WhatsApp
+
+</button>
+
+</div>
+
+</div>
 <script src="script.js"></script>
 
 </body>
