@@ -2,24 +2,27 @@
    LOADING SCREEN
 ========================= */
 
-window.onload = function () {
+window.onload = () => {
 
     setTimeout(() => {
 
         const loader = document.getElementById("loader");
 
-        loader.style.opacity = "0";
+        if(loader){
 
-        setTimeout(() => {
+            loader.style.opacity = "0";
 
-            loader.style.display = "none";
+            setTimeout(() => {
 
-        }, 700);
+                loader.style.display = "none";
 
-    }, 1800);
+            },700);
+
+        }
+
+    },1800);
 
 };
-
 
 /* =========================
    COUNTERS
@@ -27,33 +30,33 @@ window.onload = function () {
 
 const counters = document.querySelectorAll(".counter");
 
-function startCounter() {
+function startCounter(){
 
-    counters.forEach(counter => {
+    counters.forEach(counter=>{
 
         const target = Number(counter.dataset.target);
 
         let current = 0;
 
-        const update = () => {
+        const update=()=>{
 
-            const increment = Math.ceil(target / 80);
+            const increment=Math.ceil(target/80);
 
-            current += increment;
+            current+=increment;
 
-            if (current < target) {
+            if(current<target){
 
-                counter.innerText = current;
+                counter.innerText=current;
 
                 requestAnimationFrame(update);
 
-            } else {
+            }else{
 
-                counter.innerText = target;
+                counter.innerText=target;
 
             }
 
-        };
+        }
 
         update();
 
@@ -61,86 +64,300 @@ function startCounter() {
 
 }
 
-window.addEventListener("load", startCounter);
-
-
+window.addEventListener("load",startCounter);
 
 /* =========================
    PRODUCTS
 ========================= */
 
-const products = [
+const products=[
 
 {
-    id:5,
-    name:"Candeggina",
-    category:"Detergenti",
-    price:12.99,
-    stock:20,
-    rating:5,
-    badge:"NEW",
-    image:"https://lh3.googleusercontent.com/sitesv/AA5AbUCWHHKFVZZMzMib85hBm_FK-s-jyhz2q6-1Pn3D8cXRDxJsCy96sJg0Dhzn5AbiTWpbOJG2YUjVDPVOb-RjG3ngqRnI-O_vd3CuCZc7X4Dftm_ShdswnJy9fjqVXvShh28SWdjdTL2u29hVE4HSWJjOXLn8PoLYZ9tQrKzKY0WVQhiYNa-a3E5uR9Cu=w16383"
+id:1,
+name:"Candeggina",
+category:"Detergenti",
+price:12.99,
+stock:20,
+rating:5,
+badge:"NEW",
+image:"https://picsum.photos/300?1"
 },
 
 {
-    id:6,
-    name:"Chanteclair Sgrassatore",
-    category:"Detergenti",
-    price:4.99,
-    stock:35,
-    rating:5,
-    badge:"HOT",
-    image:"images/chanteclair.jpg"
+id:2,
+name:"Chanteclair Sgrassatore",
+category:"Detergenti",
+price:4.99,
+stock:30,
+rating:5,
+badge:"HOT",
+image:"https://picsum.photos/300?2"
 },
 
 {
-    id:7,
-    name:"Dash Pods",
-    category:"Lavatrice",
-    price:9.99,
-    stock:18,
-    rating:5,
-    badge:"SALE",
-    image:"images/dashpods.jpg"
+id:3,
+name:"Dash Pods",
+category:"Detergenti",
+price:9.99,
+stock:18,
+rating:5,
+badge:"SALE",
+image:"https://picsum.photos/300?3"
 }
 
 ];
 
+/* =========================
+   CART
+========================= */
 
+let cart=[];
+
+/* =========================
+   WISHLIST
+========================= */
+
+let wishlist=[];
 
 /* =========================
    RENDER PRODUCTS
 ========================= */
 
-function renderProducts(){
+function renderProducts(search=""){
 
-const productsContainer=document.getElementById("productsContainer");
+const container=document.getElementById("productsContainer");
 
-productsContainer.innerHTML="";
+if(!container) return;
 
-products.forEach(product => {
+container.innerHTML="";
 
-productsContainer.innerHTML += `
+const filtered=products.filter(product=>{
+
+return product.name.toLowerCase().includes(search.toLowerCase()) ||
+
+product.category.toLowerCase().includes(search.toLowerCase());
+
+});
+
+if(filtered.length===0){
+
+container.innerHTML=`
+<h2 style="grid-column:1/-1;text-align:center;">
+Nessun prodotto trovato
+</h2>
+`;
+
+return;
+
+}
+
+filtered.forEach(product=>{
+
+container.innerHTML+=`
 
 <div class="product-card">
 
-${product.badge ? `<div class="badge">${product.badge}</div>` : ""}
+${product.badge?`<div class="badge">${product.badge}</div>`:""}
 
-<img src="${product.image}" alt="${product.name}">
+<img src="${product.image}">
 
 <h3>${product.name}</h3>
 
-<p class="category">${product.category}</p>
+<p>${product.category}</p>
 
-<div class="stars">${"⭐".repeat(product.rating)}</div>
+<div>${"⭐".repeat(product.rating)}</div>
 
-<h2>€ ${product.price}</h2>
+<h2>€${product.price}</h2>
 
-<p class="stock">Disponibili: ${product.stock}</p>
+<p>Disponibili: ${product.stock}</p>
 
-<button class="buy-btn" onclick="addToCart(${product.id})">
+<button class="buy-btn"
+
+onclick="addToCart(${product.id})">
+
 <i class="fa-solid fa-cart-shopping"></i>
+
 Aggiungi al Carrello
+
+</button>
+
+</div>
+
+`;
+
+});
+/* =========================
+   SEARCH
+========================= */
+
+const searchInput = document.getElementById("searchInput");
+
+if(searchInput){
+
+searchInput.addEventListener("input",(e)=>{
+
+renderProducts(e.target.value);
+
+});
+
+}
+
+/* =========================
+   WISHLIST
+========================= */
+
+function toggleWishlist(id){
+
+if(wishlist.includes(id)){
+
+wishlist=wishlist.filter(item=>item!==id);
+
+}else{
+
+wishlist.push(id);
+
+}
+
+}
+
+/* =========================
+   OPEN / CLOSE CART
+========================= */
+
+const cartButton=document.getElementById("cartButton");
+const cartSidebar=document.getElementById("cartSidebar");
+const cartOverlay=document.getElementById("cartOverlay");
+const closeCart=document.getElementById("closeCart");
+
+const cartItems=document.getElementById("cartItems");
+const cartTotal=document.getElementById("cartTotal");
+const cartCount=document.getElementById("cartCount");
+
+cartButton.onclick=()=>{
+
+cartSidebar.classList.add("active");
+cartOverlay.classList.add("active");
+
+};
+
+closeCart.onclick=()=>{
+
+cartSidebar.classList.remove("active");
+cartOverlay.classList.remove("active");
+
+};
+
+cartOverlay.onclick=()=>{
+
+cartSidebar.classList.remove("active");
+cartOverlay.classList.remove("active");
+
+};
+
+/* =========================
+   ADD TO CART
+========================= */
+
+function addToCart(id){
+
+const product=products.find(p=>p.id===id);
+
+if(!product) return;
+
+if(product.stock<=0){
+
+alert("Prodotto esaurito");
+
+return;
+
+}
+
+const existing=cart.find(item=>item.id===id);
+
+if(existing){
+
+existing.quantity++;
+
+}else{
+
+cart.push({
+
+id:product.id,
+name:product.name,
+image:product.image,
+price:product.price,
+quantity:1
+
+});
+
+}
+
+product.stock--;
+
+renderProducts(searchInput?.value||"");
+
+updateCart();
+
+}
+/* =========================
+   UPDATE CART
+========================= */
+
+function updateCart(){
+
+cartItems.innerHTML="";
+
+let total=0;
+let totalItems=0;
+
+if(cart.length===0){
+
+cartItems.innerHTML="<p class='empty-cart'>Il carrello è vuoto.</p>";
+
+cartTotal.innerText="€0.00";
+
+cartCount.innerText="0";
+
+return;
+
+}
+
+cart.forEach(item=>{
+
+total+=item.price*item.quantity;
+
+totalItems+=item.quantity;
+
+cartItems.innerHTML+=`
+
+<div class="cart-item">
+
+<img src="${item.image}">
+
+<div class="cart-info">
+
+<h4>${item.name}</h4>
+
+<p>€${item.price}</p>
+
+<div class="qty-box">
+
+<button onclick="decreaseQuantity(${item.id})">-</button>
+
+<span>${item.quantity}</span>
+
+<button onclick="increaseQuantity(${item.id})">+</button>
+
+</div>
+
+</div>
+
+<button class="delete-btn"
+
+onclick="removeItem(${item.id})">
+
+<i class="fa-solid fa-trash"></i>
+
 </button>
 
 </div>
@@ -149,238 +366,145 @@ Aggiungi al Carrello
 
 });
 
-}
+cartTotal.innerText="€"+total.toFixed(2);
 
+cartCount.innerText=totalItems;
+
+}
 
 /* =========================
-   CART
+   INCREASE
 ========================= */
 
-let cart = [];
+function increaseQuantity(id){
 
-const cartButton = document.getElementById("cartButton");
-const cartSidebar = document.getElementById("cartSidebar");
-const cartOverlay = document.getElementById("cartOverlay");
-const closeCart = document.getElementById("closeCart");
+const item=cart.find(i=>i.id===id);
 
-const cartCount = document.getElementById("cartCount");
-const cartItems = document.getElementById("cartItems");
-const cartTotal = document.getElementById("cartTotal");
+const product=products.find(p=>p.id===id);
 
+if(!item || !product) return;
 
-cartButton.onclick = () => {
+if(product.stock<=0){
 
-    cartSidebar.classList.add("active");
-    cartOverlay.classList.add("active");
+alert("Prodotto esaurito");
 
-};
-
-closeCart.onclick = () => {
-
-    cartSidebar.classList.remove("active");
-    cartOverlay.classList.remove("active");
-
-};
-
-cartOverlay.onclick = () => {
-
-    cartSidebar.classList.remove("active");
-    cartOverlay.classList.remove("active");
-
-};
-
-
-function addToCart(id){
-
-    const product = products.find(p => p.id === id);
-
-    if(!product) return;
-
-    if(product.stock <= 0){
-
-        alert("Prodotto esaurito!");
-
-        return;
-
-    }
-
-    product.stock--;
-
-    cart.push({
-
-        id:product.id,
-
-        name:product.name,
-
-        image:product.image,
-
-        price:product.price
-
-    });
-
-    renderProducts();
-
-    updateCart();
+return;
 
 }
 
+item.quantity++;
 
-function updateCart(){
+product.stock--;
 
-    cartItems.innerHTML="";
+renderProducts(searchInput?.value||"");
 
-    let total=0;
-
-    cart.forEach((item,index)=>{
-
-        total += item.price;
-
-        cartItems.innerHTML += `
-
-        <div class="cart-item">
-
-            <img src="${item.image}">
-
-            <div>
-
-                <h4>${item.name}</h4>
-
-                <p>€${item.price}</p>
-
-            </div>
-
-            <button onclick="removeItem(${index})">
-
-                <i class="fa-solid fa-trash"></i>
-
-            </button>
-
-        </div>
-
-        `;
-
-    });
-
-    if(cart.length===0){
-
-        cartItems.innerHTML="<p class='empty-cart'>Il carrello è vuoto.</p>";
-
-    }
-
-    cartCount.innerText=cart.length;
-
-    cartTotal.innerText="€"+total.toFixed(2);
+updateCart();
 
 }
 
+/* =========================
+   DECREASE
+========================= */
 
-function removeItem(index){
+function decreaseQuantity(id){
 
-    const removed = cart[index];
+const item=cart.find(i=>i.id===id);
 
-    const product = products.find(p => p.id === removed.id);
+const product=products.find(p=>p.id===id);
 
-    if(product){
+if(!item || !product) return;
 
-        product.stock++;
+item.quantity--;
 
-    }
+product.stock++;
 
-    cart.splice(index,1);
+if(item.quantity<=0){
 
-    renderProducts();
-
-    updateCart();
-
-}
-
-/*================ TOAST =================*/
-
-function showToast(text){
-
-const toast=document.getElementById("toast");
-
-const toastText=document.getElementById("toastText");
-
-toastText.innerText=text;
-
-toast.classList.add("show");
-
-setTimeout(()=>{
-
-toast.classList.remove("show");
-
-},2500);
-
-}
-/*================ WISHLIST =================*/
-
-let wishlist = [];
-
-function toggleWishlist(id){
-
-    if(wishlist.includes(id)){
-
-        wishlist = wishlist.filter(item => item !== id);
-
-    }else{
-
-        wishlist.push(id);
-
-    }
-
-    renderProducts(
-        document.getElementById("searchInput")?.value || ""
-    );
-
-}
-/*================ BOOKING =================*/
-
-function openBooking(service){
-
-document.getElementById("bookingModal").style.display="flex";
-
-document.getElementById("serviceType").value=service;
+cart=cart.filter(i=>i.id!==id);
 
 }
 
-function closeBooking(){
+renderProducts(searchInput?.value||"");
 
-document.getElementById("bookingModal").style.display="none";
+updateCart();
 
 }
 
-function sendBookingWhatsApp(){
+/* =========================
+   DELETE ITEM
+========================= */
 
-const name=document.getElementById("customerName").value;
+function removeItem(id){
 
-const phone=document.getElementById("customerPhone").value;
+const item=cart.find(i=>i.id===id);
 
-const address=document.getElementById("customerAddress").value;
+const product=products.find(p=>p.id===id);
 
-const date=document.getElementById("customerDate").value;
+if(item && product){
 
-const time=document.getElementById("customerTime").value;
+product.stock+=item.quantity;
 
-const note=document.getElementById("customerNote").value;
+}
 
-const service=document.getElementById("serviceType").value;
+cart=cart.filter(i=>i.id!==id);
 
-const message=`Nuova Prenotazione
+renderProducts(searchInput?.value||"");
 
-Nome: ${name}
-Telefono: ${phone}
-Servizio: ${service}
-Data: ${date}
-Ora: ${time}
-Indirizzo: ${address}
-Note: ${note}`;
-
-window.open(
-`https://wa.me/39رقم_واتساب_المحل?text=${encodeURIComponent(message)}`,
-"_blank"
-);
+updateCart();
 
 }
 renderProducts();
 updateCart();
+/* =========================
+   WHATSAPP ORDER
+========================= */
+
+function sendOrderWhatsApp(){
+
+if(cart.length===0){
+
+alert("Il carrello è vuoto!");
+
+return;
+
+}
+
+let message=`🛒 *Nuovo Ordine*%0A%0A`;
+
+let total=0;
+
+cart.forEach(item=>{
+
+const sub=item.price*item.quantity;
+
+total+=sub;
+
+message+=`• ${item.name}%0A`;
+
+message+=`Quantità: ${item.quantity}%0A`;
+
+message+=`Prezzo: €${sub.toFixed(2)}%0A%0A`;
+
+});
+
+message+=`💰 Totale: €${total.toFixed(2)}%0A%0A`;
+
+message+=`👤 Nome:%0A`;
+
+message+=`📞 Telefono:%0A`;
+
+message+=`📍 Indirizzo:%0A`;
+
+message+=`📝 Note:%0A`;
+
+window.open(
+
+"https://wa.me/393934020090?text="+message,
+
+"_blank"
+
+);
+
+}
+
+}
