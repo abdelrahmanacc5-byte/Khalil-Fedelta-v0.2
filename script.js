@@ -129,13 +129,38 @@ const productsContainer=document.getElementById("productsContainer");
 
 productsContainer.innerHTML="";
 
-products.forEach(product=>{
+products.forEach(product => {
 
-productsContainer.innerHTML+=`
+productsContainer.innerHTML += `
 
 <div class="product-card">
 
-${product.badge
+${product.badge ? `<div class="badge">${product.badge}</div>` : ""}
+
+<img src="${product.image}" alt="${product.name}">
+
+<h3>${product.name}</h3>
+
+<p class="category">${product.category}</p>
+
+<div class="stars">${"⭐".repeat(product.rating)}</div>
+
+<h2>€ ${product.price}</h2>
+
+<p class="stock">Disponibili: ${product.stock}</p>
+
+<button class="buy-btn" onclick="addToCart(${product.id})">
+<i class="fa-solid fa-cart-shopping"></i>
+Aggiungi al Carrello
+</button>
+
+</div>
+
+`;
+
+});
+
+}
 
 
 /* =========================
