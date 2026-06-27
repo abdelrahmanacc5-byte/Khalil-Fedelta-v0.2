@@ -72,49 +72,16 @@ window.addEventListener("load", startCounter);
 const products = [
 
 {
-    id:1,
-    name:"Detergente Premium",
+    id:11,
+    name:"sutter",
     category:"Detergenti",
-    price:14.99,
-    stock:30,
-    rating:5,
-    badge:"-15%",
-    image:"https://images.unsplash.com/photo-1585421514738-01798e348b17?w=600"
-},
-
-{
-    id:2,
-    name:"Mop Premium",
-    category:"Accessori",
-    price:24.99,
-    stock:18,
-    rating:5,
-    badge:"-20%",
-    image:"https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?w=600"
-},
-
-{
-    id:3,
-    name:"Spray Cleaner",
-    category:"Detergenti",
-    price:9.99,
+    price:12.50,
     stock:40,
-    rating:4,
-    badge:"",
-    image:"https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?w=600"
-},
-
-{
-    id:4,
-    name:"Vacuum Cleaner",
-    category:"Macchine",
-    price:129.99,
-    stock:7,
     rating:5,
-    badge:"NEW",
-    image:"https://images.unsplash.com/photo-1558317374-067fb5f30001?w=600"
-}
-
+    badge:"NOVITÀ",
+    image:"https://your-image-link.jpg"
+},
+   
 ];
 
 
