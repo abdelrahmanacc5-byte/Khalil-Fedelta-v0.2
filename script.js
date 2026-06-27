@@ -129,7 +129,7 @@ ${product.badge ? `<div class="badge">${product.badge}</div>` : ""}
 
 <p class="stock">Disponibili: ${product.stock}</p>
 
-<button class="buy-btn" onclick="addToCart(${product.id})">
+<button class="buy-btn" onclick="addToCart(${product.id}); this.innerHTML='✓ Aggiunto'; this.disabled=true;">
 
 <i class="fa-solid fa-cart-shopping"></i>
 
