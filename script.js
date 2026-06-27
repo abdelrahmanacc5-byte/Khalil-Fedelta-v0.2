@@ -79,7 +79,7 @@ const products = [
     stock:20,
     rating:5,
     badge:"NEW",
-    image:"images/candeggina.jpg"
+    image:"https://lh3.googleusercontent.com/sitesv/AA5AbUCWHHKFVZZMzMib85hBm_FK-s-jyhz2q6-1Pn3D8cXRDxJsCy96sJg0Dhzn5AbiTWpbOJG2YUjVDPVOb-RjG3ngqRnI-O_vd3CuCZc7X4Dftm_ShdswnJy9fjqVXvShh28SWdjdTL2u29hVE4HSWJjOXLn8PoLYZ9tQrKzKY0WVQhiYNa-a3E5uR9Cu=w16383"
 },
 
 {
