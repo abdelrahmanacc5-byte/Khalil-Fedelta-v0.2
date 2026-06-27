@@ -235,3 +235,14 @@ function removeItem(index){
     updateCart();
 
 }
+function addToCart(id){
+
+    const product = products.find(p => p.id === id);
+
+    if(!product) return;
+
+    cart.push(product);
+
+    updateCart();
+
+}
